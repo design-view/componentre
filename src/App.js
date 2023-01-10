@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import './Style.css';
+import Header from './components/Header';
+import Main from './components/Main';
+import Footer from './components/Footer';
+import { useState } from 'react';
 
 function App() {
+  //const [mode,setMode] = useState("home");
+  let content = null;
+  let modevar = "home";
+  if(modevar === "home"){
+    content = <div>환영합니다.</div>
+  }
+  else if(modevar === "page"){
+    content = <div>페이지입니다.</div>
+  }
+  const lists = [
+    {id:1, title: 'menu1'},
+    {id:2, title: 'menu2'},
+    {id:3, title: 'menu3'},
+    {id:4, title: 'menu4'},
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {content}
+        <button onClick={()=>{
+          modevar="page"
+          console.log(modevar)
+          }}>모드변경</button>
+        <Header lists={lists}/>
+        <Main/>
+        <Footer/>
     </div>
   );
 }
